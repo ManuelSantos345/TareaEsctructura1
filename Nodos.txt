@@ -1,0 +1,61 @@
+package listasligadas;
+
+
+public class Nodos {
+    private int data;
+    private String name;
+    private Nodos prev;
+    public Nodos next;
+   /**
+    * @param pdata Contiene un dato numerio
+    */
+    public Nodos(){}
+    
+    public Nodos(int pdata){
+        data=pdata;
+        name="";
+        prev=null;
+        next=null;
+
+    }
+    public Nodos(int data, String name){
+        this.data=data;
+        this.name=name;
+        prev=null;
+        next=null;
+    }
+    public Nodos(int data, String name, Nodos prev, Nodos next){
+        this.data=data;
+        this.name=name;
+        this.prev=prev;
+        this.next=next;
+    }
+
+    public int getData(){
+        return data;
+    }
+    public void setData(int valor){
+        data=valor;
+    }
+
+    public Nodos getPrev(){
+        return prev;
+    }
+    public Nodos getNext(){
+        return next;
+    }
+    public void setPrev(Nodos node){
+        prev=node;
+    }
+    public void setNext(Nodos node){
+        next=node;
+    }
+    public Nodos clone(){
+        return new Nodos(data,name,prev,next);
+    }
+
+    void getPrev(Nodos newNodos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+}

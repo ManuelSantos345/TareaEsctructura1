@@ -1,0 +1,94 @@
+package listasligadas;
+
+
+public class ListasLigadas {
+
+ public Nodos head;
+    public Nodos tail;
+    private int lengthdl;
+    private int length;
+
+    //CReate a new empty list
+    public ListasLigadas(){
+        head= new Nodos(0, "",null,null);
+        tail= new Nodos(Integer.MIN_VALUE, "",head,null);
+        head.setNext(tail);
+        lengthdl=0;
+    }
+    
+    //Add a new value to the front of the list
+    public void insertAtFront(int newData,String newName){
+        Nodos newNodos= new Nodos(newData, newName,null,head.next);
+        newNodos.getNext().getPrev(newNodos);
+        head=newNodos;
+        lengthdl++;
+    }
+
+    //Add a new datas to the list at a given position.
+    public void insetAtPos(int data, String name, int position){
+              //Validate the position
+              if(position<0) position=0;
+
+              else if (position>lengthdl) position=lengthdl;
+              //if the list is empty, make it be the only element
+              if(head==null){
+                head= new Nodos(data, name);
+                tail=head;
+              }else if (position==0){
+                Nodos newNodoD=new Nodos(data,name);
+                newNodoD.setNext(head);//newNodoD.next=head
+                head=newNodoD;
+              }else{
+                Nodos temp=head;
+                for(int i=1;i<position;i++){
+                    temp=temp.getNext();
+                }
+                Nodos newNodoD=new Nodos(data, name);
+                newNodoD.setNext(temp.getNext());//newNodoD.next=temp.next
+                newNodoD.setPrev(temp);
+                newNodoD.getNext().setPrev(newNodoD);
+                temp.setNext(newNodoD);
+              }
+              lengthdl++;
+    }
+
+    //Add a new value to hre rear of the list
+    public void inserAtTail(int newVal,String newName){
+        Nodos newNodos=new Nodos (newVal,newName, tail.getPrev(),tail);
+        newNodos.getPrev().setNext(newNodos);
+        tail.setPrev(newNodos);
+        lengthdl++;
+    }
+
+    // Return a string representation of this collection, in the form: ["str1","str2",...].
+    public String toString() {
+      String result = "[]";
+     int length = 0;
+      if (length == 0)
+        return result;
+      result = "[" + head.getNext().getData();
+      Nodos temp = head.getNext().getNext();
+      while (temp != tail) {
+        result += "," + temp.getData();
+        temp =  temp.getNext();
+      }
+      return result + "]";
+    }	
+    
+    // Remove everything from the DLL.
+    public void clearList(){
+      head = null;
+      tail = null;
+      length = 0;
+    }
+
+    private static class newNodos {
+
+        private static Object getNext() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public newNodos() {
+        }
+    }
+    }
